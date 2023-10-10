@@ -2,8 +2,9 @@
   "name": "swiggy-clone",
   "version": "1.0.0",
   "description": "This is food ordering app",
-  "main": "app.js",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -23,5 +24,8 @@
   "devDependencies": {
     "parcel": "^2.9.3",
     "process": "^0.11.10"
-  }
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }
