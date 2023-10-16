@@ -28,14 +28,25 @@
 }
 
 .search-container {
-    
+    position: relative;
 }
 
-.search-container > input {
+.search-container > .input-box > input {
     width: 30rem;
     height: 2.5rem;
     border: #ececec;
     border-radius: 0.5rem;
+}
+
+.search-container > .search-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.search-container > .search-icon > img {
+    width: 2rem;
+    height: 2rem;
 }
 
 .copyright {
