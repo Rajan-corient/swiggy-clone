@@ -1,33 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import RestaurantCard from "./RestaurantCard"
+import React, { useEffect, useState, useContext } from "react";
+import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { restaurantUrl } from "../utils/constant";
+import { SearchContext } from "../context/SearchContext";
 
 const Body = () => {
-
   const [restaurantList, setRestaurantList] = useState([]);
+  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
+  const { searchText, setSearchText } = useContext(SearchContext);
+  console.log("Body Rendered");
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, [])  
+  
+  useEffect(() => {
+    filterRestaurantList();
+  }, [searchText])
 
   const fetchData = async () => {
     try {
       const res = await fetch(restaurantUrl);
       const data = await res.json();
-      const arr = data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      const arr = data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       setRestaurantList(arr?.map(item => item.info));
-      console.log("arr", arr);
+      setFilteredRestaurantList(arr?.map(item => item.info));
     } catch (error) {
       console.log(error);
     }
   }
 
+  const filterRestaurantList = () => {
+    const filteredList = restaurantList.filter(item => (
+      item.name.toLowerCase().includes(searchText.toLowerCase())
+    ));
+    setFilteredRestaurantList(filteredList);
+  }
+
   return (
-    restaurantList.length === 0 ? <Shimmer /> :
+    filteredRestaurantList.length === 0 ? <Shimmer /> :
     <div className="restaurant-container">
       {
-        restaurantList.map(item => {
+        filteredRestaurantList.map(item => {
           return <RestaurantCard key={item.id} resData={item} />
         })
       }
@@ -35,4 +49,4 @@ const Body = () => {
   )
 }
 
-export default Body
+export default Body;
