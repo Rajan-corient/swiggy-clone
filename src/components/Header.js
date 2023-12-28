@@ -1,7 +1,8 @@
-import React, { useState , useContext} from 'react'
-import { SearchContext } from '../context/SearchContext';
+import React, { useState, useContext } from "react";
+import { SearchContext } from "../context/SearchContext";
 import logo from "../assets/logo.svg";
 import searchIcon from "../assets/search_icon.svg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { searchText, setSearchText } = useContext(SearchContext);
@@ -12,7 +13,7 @@ const Header = () => {
     const val = e.target.value;
     setSearchVal(val);
     setSearchText(val);
-  }
+  };
 
   return (
     <div className="navbar">
@@ -21,12 +22,12 @@ const Header = () => {
       </div>
       <div className="search-container">
         <div className="input-box">
-          <input 
-          type="text" 
-          name="search" 
-          id="search" 
-          value={searchVal}
-          onChange={searchHandler}
+          <input
+            type="text"
+            name="search"
+            id="search"
+            value={searchVal}
+            onChange={searchHandler}
           />
         </div>
         <div className="search-icon">
@@ -35,13 +36,19 @@ const Header = () => {
       </div>
       <div className="nav-list-container">
         <ul className="nav-list">
-          <li>Home</li>
-          <li>About</li>
-          <li>Cart</li>
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/about"}>About</Link>
+          </li>
+          <li>
+            <Link to={"/cart"}>Cart</Link>
+          </li>
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
