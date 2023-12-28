@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState , useContext} from 'react'
+import { SearchContext } from '../context/SearchContext';
 import logo from "../assets/logo.svg";
-import { searchIconUrl } from "../utils/constant";
+import searchIcon from "../assets/search_icon.svg";
 
 const Header = () => {
-  const [searchText, setSearchText] = useState("");
+  const { searchText, setSearchText } = useContext(SearchContext);
+  const [searchVal, setSearchVal] = useState("");
+  console.log("Header Rendered");
 
-  const onRestaurantSearch = (val) => {
-    console.log(val);
+  const searchHandler = (e) => {
+    const val = e.target.value;
+    setSearchVal(val);
     setSearchText(val);
   }
-
 
   return (
     <div className="navbar">
@@ -22,12 +25,12 @@ const Header = () => {
           type="text" 
           name="search" 
           id="search" 
-          value={searchText}
-          onChange={(e) => {onRestaurantSearch(e.target.value)}}
+          value={searchVal}
+          onChange={searchHandler}
           />
         </div>
         <div className="search-icon">
-          <img src={searchIconUrl} alt="search" />
+          <img src={searchIcon} alt="search" />
         </div>
       </div>
       <div className="nav-list-container">
