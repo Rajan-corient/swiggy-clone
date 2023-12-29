@@ -58,10 +58,10 @@ const RestaurantInfo = () => {
               ratings,
             } = menuItem?.card?.info;
             return (
-              <li key={id}>
-                <h4>{name}</h4>
-                <p>{price || defaultPrice}</p>
-                <p>{description}</p>
+              <li key={id} className="menu-item">
+                <span className="name">{name}</span>
+                <span className="price">{(price || defaultPrice) / 100}</span>
+                <span className="description">{description}</span>
               </li>
             );
           })}
