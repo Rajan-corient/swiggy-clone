@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { SearchContext, SearchContextProvider } from "./context/SearchContext";
 import ErrorPage from "./components/ErrorPage";
 import About from "./components/About";
+import RestaurantInfo from "./components/RestaurantInfo";
 
 // const element = React.createElement("div", {className: "container"},
 //     [React.createElement("h1", {id:"heading"} ,"Hello from react"),
@@ -41,6 +42,10 @@ const appRouter = createBrowserRouter([
         path: "/cart",
         element: <About />,
       },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaurantInfo />,
+      },
     ],
     errorElement: <ErrorPage />,
   },
@@ -48,9 +53,8 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <RouterProvider router={appRouter}>
-    <SearchContextProvider>
-      <Outlet />
-    </SearchContextProvider>
-  </RouterProvider>
+  <SearchContextProvider>
+    <RouterProvider router={appRouter} />
+    {/* <App /> */}
+  </SearchContextProvider>
 );

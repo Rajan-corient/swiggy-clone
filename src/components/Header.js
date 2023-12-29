@@ -18,7 +18,9 @@ const Header = () => {
   return (
     <div className="navbar">
       <div className="logo-container">
-        <img src={logo} alt="logo" />
+        <Link to={"/"}>
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="search-container">
         <div className="input-box">
