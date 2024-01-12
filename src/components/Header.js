@@ -3,17 +3,25 @@ import { SearchContext } from "../context/SearchContext";
 import logo from "../assets/logo.svg";
 import searchIcon from "../assets/search_icon.svg";
 import { Link } from "react-router-dom";
+import debounce from "../utils/debounce";
 
 const Header = () => {
-  const { searchText, setSearchText } = useContext(SearchContext);
   const [searchVal, setSearchVal] = useState("");
+  const { searchText, setSearchText } = useContext(SearchContext);
   console.log("Header Rendered");
 
-  const searchHandler = (e) => {
+  const searchHandler2 = (e) => {
     const val = e.target.value;
     setSearchVal(val);
     setSearchText(val);
   };
+
+  const searchRestaurant = (val) => {
+    setSearchText(val);
+  };
+
+  // Create a new debounced version of the 'filterRestaurantList' function with a delay of 300 milliseconds.
+  const searchHandler = debounce(searchRestaurant, 2000);
 
   return (
     <div className="navbar">
@@ -29,7 +37,10 @@ const Header = () => {
             name="search"
             id="search"
             value={searchVal}
-            onChange={searchHandler}
+            onChange={(e) => {
+              setSearchVal(e.target.value);
+              searchHandler(e.target.value);
+            }}
           />
         </div>
         <div className="search-icon">

@@ -34,6 +34,7 @@ const Body = () => {
   };
 
   const filterRestaurantList = () => {
+    console.log("searchText", searchText);
     const filteredList = restaurantList.filter((item) =>
       item.name.toLowerCase().includes(searchText.toLowerCase())
     );
