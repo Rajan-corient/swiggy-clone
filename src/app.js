@@ -8,6 +8,7 @@ import { SearchContext, SearchContextProvider } from "./context/SearchContext";
 import ErrorPage from "./components/ErrorPage";
 import About from "./components/About";
 import RestaurantInfo from "./components/RestaurantInfo";
+import Posts from "./components/Posts";
 
 // const element = React.createElement("div", {className: "container"},
 //     [React.createElement("h1", {id:"heading"} ,"Hello from react"),
@@ -41,6 +42,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <About />,
+      },     
+      {
+        path: "/post",
+        element: <Posts />,
       },
       {
         path: "/restaurant/:resId",
@@ -55,6 +60,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <SearchContextProvider>
     <RouterProvider router={appRouter} />
-    {/* <App /> */}
+    {/* <App />  */}
   </SearchContextProvider>
 );
